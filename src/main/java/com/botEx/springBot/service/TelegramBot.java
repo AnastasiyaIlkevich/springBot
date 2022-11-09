@@ -23,20 +23,16 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Autowired
     private final BotConfig botConfig;
 
-    final static String HELP_TEXT = "This bot is created to demonstrate Spring capabilities.\n\n" +
-            "You can execute commands from the main menu on the left or by typing a command:\n\n" +
-            "Type /start to see a welcome message\n\n" +
-            "Type /mydata to see data stored about yourself\n\n" +
-            "Type /help to see this message again";
+    final static String HELP_TEXT = "Это бот для предоставления информации по 1С";
 
     public TelegramBot(BotConfig botConfig) {
         this.botConfig = botConfig;
         List<BotCommand> listCommands = new ArrayList<>();
-        listCommands.add(new BotCommand("/start", "get a welcome message"));
-        listCommands.add(new BotCommand("/myData", "get your data stored"));
-        listCommands.add(new BotCommand("/deleteData", "delete my data"));
-        listCommands.add(new BotCommand("/help", "info how to use this bot"));
-        listCommands.add(new BotCommand("/settings", "set your preferences"));
+        listCommands.add(new BotCommand("/start", "преветственное сообщение"));
+        listCommands.add(new BotCommand("/myData", "предоставляет сохранённую информацию о пользователе"));
+        listCommands.add(new BotCommand("/deleteData", "удаляет сохранённую информацию о пользователе"));
+        listCommands.add(new BotCommand("/help", "подробная информация о боте"));
+       // listCommands.add(new BotCommand("/settings", "set your preferences"));
         try {
             this.execute(new SetMyCommands(listCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
