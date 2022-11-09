@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
@@ -63,6 +64,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             switch (massegeTaxt) {
                 case "/start":
                     startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
+                    registerUser(update.getMessage());
                     break;
                 case "/help":
                     sendMessage(chatId, HELP_TEXT);
@@ -72,6 +74,9 @@ public class TelegramBot extends TelegramLongPollingBot {
             }
         }
 
+    }
+
+    private void registerUser(Message message) {
     }
 
     private void startCommandReceived(long chatId, String firstName) {
